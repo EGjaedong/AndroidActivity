@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,7 +49,15 @@ public class FindConnectActivity extends AppCompatActivity {
                 int numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
                 String name = cursor.getString(nameIndex);
                 String number = cursor.getString(numberIndex);
+                displayConnect(name, number);
             }
+            assert cursor != null;
+            cursor.close();
         }
+    }
+
+    private void displayConnect(String name, String number){
+        TextView displayTextView = findViewById(R.id.display_connect);
+        displayTextView.setText(getString(R.string.connect_name_and_phone_number, name, number));
     }
 }

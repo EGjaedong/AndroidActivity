@@ -2,4 +2,5 @@
     <string name="app_name">AndroidActivity</string>
     <string name="btn_activity_practices">Activity Practices</string>
     <string name="btn_find_connect">Select Connect Person</string>
+    <string name="connect_name_and_phone_number">%s:%s</string>
 </resources>
