@@ -9,8 +9,6 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button button;
-
     private View.OnClickListener jumpToSelectConnectView = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -24,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button = findViewById(R.id.btn_activity_practices);
+        Button button = findViewById(R.id.btn_activity_practices);
         button.setOnClickListener(jumpToSelectConnectView);
     }
 }
