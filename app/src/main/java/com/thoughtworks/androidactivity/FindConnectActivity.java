@@ -41,7 +41,7 @@ public class FindConnectActivity extends AppCompatActivity {
         if (requestCode == REQUEST_SELECT_PHONE_CONNECT && resultCode == RESULT_OK) {
             assert data != null;
             Uri connectUri = data.getData();
-            String[] projection = new String[]{ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME ,ContactsContract.CommonDataKinds.Phone.NUMBER};
+            String[] projection = new String[]{ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER};
             assert connectUri != null;
             Cursor cursor = getContentResolver().query(connectUri, projection, null, null, null);
             if (cursor != null && cursor.moveToFirst()) {
@@ -56,7 +56,7 @@ public class FindConnectActivity extends AppCompatActivity {
         }
     }
 
-    private void displayConnect(String name, String number){
+    private void displayConnect(String name, String number) {
         TextView displayTextView = findViewById(R.id.display_connect);
         displayTextView.setText(getString(R.string.connect_name_and_phone_number, name, number));
     }
