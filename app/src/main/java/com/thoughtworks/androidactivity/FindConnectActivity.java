@@ -1,6 +1,8 @@
 package com.thoughtworks.androidactivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
@@ -30,5 +32,23 @@ public class FindConnectActivity extends AppCompatActivity {
 
         Button button = findViewById(R.id.btn_find_connect);
         button.setOnClickListener(jumpToConnect);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_SELECT_PHONE_CONNECT && resultCode == RESULT_OK) {
+            assert data != null;
+            Uri connectUri = data.getData();
+            String[] projection = new String[]{ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME ,ContactsContract.CommonDataKinds.Phone.NUMBER};
+            assert connectUri != null;
+            Cursor cursor = getContentResolver().query(connectUri, projection, null, null, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                int nameIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+                int numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                String name = cursor.getString(nameIndex);
+                String number = cursor.getString(numberIndex);
+            }
+        }
     }
 }
