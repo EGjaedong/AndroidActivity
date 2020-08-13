@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AndroidActivity</string>
+    <string name="btn_activity_practices">Activity Practices</string>
 </resources>
