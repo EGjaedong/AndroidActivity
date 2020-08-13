@@ -14,7 +14,8 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener jumpToSelectConnectView = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            Intent intent = new Intent(MainActivity.this, FindConnectActivity.class);
+            startActivity(intent);
         }
     };
 
