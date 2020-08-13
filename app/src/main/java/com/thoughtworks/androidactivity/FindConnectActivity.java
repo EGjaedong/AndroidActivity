@@ -31,8 +31,17 @@ public class FindConnectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.find_connect_activity);
 
-        Button button = findViewById(R.id.btn_find_connect);
-        button.setOnClickListener(jumpToConnect);
+        Button buttonToConnect = findViewById(R.id.btn_find_connect);
+        buttonToConnect.setOnClickListener(jumpToConnect);
+
+        Button buttonToLifeCycle = findViewById(R.id.btn_to_life_cycle_activity);
+        buttonToLifeCycle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FindConnectActivity.this, LifeCycleActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

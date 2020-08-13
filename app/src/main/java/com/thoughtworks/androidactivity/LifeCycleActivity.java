@@ -12,6 +12,7 @@ public class LifeCycleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.life_cycle_activity);
         Log.d(TAG, "LifeCycleActivity is created!");
     }
 
