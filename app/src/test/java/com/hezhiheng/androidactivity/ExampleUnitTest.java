@@ -1,4 +1,4 @@
-package com.thoughtworks.androidactivity;
+package com.hezhiheng.androidactivity;
 
 import org.junit.Test;
 

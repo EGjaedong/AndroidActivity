@@ -1,10 +1,11 @@
-package com.thoughtworks.androidactivity;
+package com.hezhiheng.androidactivity;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,7 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class FindConnectActivity extends AppCompatActivity {
+public class FindConnectPersonActivity extends AppCompatActivity {
 
     private static final int REQUEST_SELECT_PHONE_CONNECT = 1;
 
@@ -38,7 +39,7 @@ public class FindConnectActivity extends AppCompatActivity {
         buttonToLifeCycle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FindConnectActivity.this, LifeCycleActivity.class);
+                Intent intent = new Intent(FindConnectPersonActivity.this, LifeCycleActivity.class);
                 startActivity(intent);
             }
         });
@@ -48,20 +49,22 @@ public class FindConnectActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_SELECT_PHONE_CONNECT && resultCode == RESULT_OK) {
-            assert data != null;
+            if (data == null)
+                return;
             Uri connectUri = data.getData();
             String[] projection = new String[]{ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER};
-            assert connectUri != null;
-            Cursor cursor = getContentResolver().query(connectUri, projection, null, null, null);
-            if (cursor != null && cursor.moveToFirst()) {
-                int nameIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
-                int numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
-                String name = cursor.getString(nameIndex);
-                String number = cursor.getString(numberIndex);
-                displayConnect(name, number);
+            try (Cursor cursor = getContentResolver().query(connectUri, projection, null, null, null);){
+                if (cursor != null && cursor.moveToFirst()) {
+                    int nameIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+                    int numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                    String name = cursor.getString(nameIndex);
+                    String number = cursor.getString(numberIndex);
+                    displayConnect(name, number);
+                }
             }
-            assert cursor != null;
-            cursor.close();
+            catch (Exception e){
+                Log.d(this.getClass().getSimpleName(), "查询结果为空！");
+            }
         }
     }
 

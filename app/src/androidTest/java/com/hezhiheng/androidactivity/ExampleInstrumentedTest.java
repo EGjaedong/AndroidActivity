@@ -1,4 +1,4 @@
-package com.thoughtworks.androidactivity;
+package com.hezhiheng.androidactivity;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package com.thoughtworks.androidactivity;
+package com.hezhiheng.androidactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener jumpToSelectConnectView = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(MainActivity.this, FindConnectActivity.class);
+            Intent intent = new Intent(MainActivity.this, FindConnectPersonActivity.class);
             startActivity(intent);
         }
     };
